@@ -1,6 +1,7 @@
 from datetime import datetime
 from tech_news.database import find_news, search_news
 
+
 # Requisito 6
 def search_by_title(title):
     new = find_news()
@@ -39,4 +40,8 @@ def search_by_source(source):
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
+    get_all = search_news(
+        {"categories": {"$regex": category, "$options": "i"}}
+    )
+    n_tulpa = [new for new in get_all]
+    return [(new["title"], new["url"]) for new in n_tulpa]
