@@ -29,11 +29,12 @@ def search_by_date(date):
         raise ValueError("Data inválida")
 
 
-print(search_by_date("2020-11-11"))
-
 # Requisito 8
 def search_by_source(source):
-    """Seu código deve vir aqui"""
+    get_all = search_news({"sources": {"$regex": source, "$options": "i"}})
+    n_tulpa = [new for new in get_all]
+
+    return [(new["title"], new["url"]) for new in n_tulpa]
 
 
 # Requisito 9
