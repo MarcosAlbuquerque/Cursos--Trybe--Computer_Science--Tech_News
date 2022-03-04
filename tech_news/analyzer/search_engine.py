@@ -1,6 +1,13 @@
+from tech_news.database import find_news
+from datetime import date
+
 # Requisito 6
 def search_by_title(title):
-    """Seu código deve vir aqui"""
+    new = find_news()
+    filter = [
+        new for new in new if new["title"].lower() == title.lower()
+    ]
+    return [(new["title"], new["url"]) for new in filter]
 
 
 # Requisito 7
